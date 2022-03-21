@@ -34,3 +34,16 @@ export interface IEUser {
   Password?: string,
   ConfirmPassword?: string
 }
+
+
+export const DUser:_IUser = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  address: '',
+  avatar: '',
+  _id: '',
+  createdAt: '',
+  updatedAt: '',
+  uid: ''
+}
