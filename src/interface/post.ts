@@ -1,7 +1,7 @@
 
 import { Document } from 'mongoose'
 
-interface IPost extends Document {
+export interface IPost extends Document {
   _id: string,
   firstName: string,
   lastName: string,
