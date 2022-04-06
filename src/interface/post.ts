@@ -6,6 +6,7 @@ export interface IPost extends Document {
   firstName: string,
   lastName: string,
   uid: string,
+  avatar: string,
   createdAt: string,
   updatedAt: string
 }

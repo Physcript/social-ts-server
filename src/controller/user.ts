@@ -34,5 +34,14 @@ export default {
     })
     res.locals.user = undefined
     return 
+  }),
+  search: ((req: Request, res: Response) => {
+    res.status(200).json({
+      message: {
+        user: res.locals.user 
+      }
+    })
+    res.locals.user = undefined
+    return
   })
 }

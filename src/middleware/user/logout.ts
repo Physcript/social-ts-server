@@ -5,6 +5,7 @@ import { find_by_uid } from "../main";
 
 const logout = async (req: Request, res: Response, next: NextFunction) => {
   const { uid } = req.body
+
   const user = await find_by_uid(uid)
 
   if(!user) 

@@ -10,7 +10,6 @@ import findAllById_middleware from '../middleware/post/findById'
 
 const router = express.Router()
 
-
 router.post('/create',authenticate,create_middleware,controller.create)
 router.get('/post',authenticate,findAll_middleware,controller.findAll)
 router.get('/postById',authenticate,findAllById_middleware,controller.findById)
