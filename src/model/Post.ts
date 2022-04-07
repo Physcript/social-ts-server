@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema({
   body: String,
   avatar: String,
   userUid: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     ref: 'User'
   }
 },{ timestamps: true })

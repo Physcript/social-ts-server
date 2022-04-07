@@ -3,11 +3,11 @@ import mongoose from 'mongoose'
 
 const likeSchema = new mongoose.Schema({
   uid: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     ref: 'User'
   },
   postId: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     ref: 'Post'
   }
 },{ timestamps: true })

@@ -40,6 +40,10 @@ const likeComment = async (req: Request, res: Response, next: NextFunction) => {
     {
       await Like.findOneAndDelete({ uid })
     }
+  
+  const count: number = await Like.find({}).count()
+  
+  res.locals.count = count
 
   next()
   return
