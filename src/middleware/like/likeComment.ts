@@ -1,6 +1,7 @@
 
 
 import Like from '../../model/Like'
+import Post from '../../model/Post'
 
 import { Request,Response,NextFunction } from 'express'
 import { find_by_uid, find_post_by_id, find_like_by_uid } from '../main'
@@ -10,7 +11,8 @@ const likeComment = async (req: Request, res: Response, next: NextFunction) => {
   const { uid, postId } = req.body    
   const user = await find_by_uid(uid)
   const post = await find_post_by_id(postId)
-  const exist = await find_like_by_uid(uid)
+  
+  const exist = await find_like_by_uid(uid,postId)
 
   if(user === null)
     {
@@ -38,7 +40,7 @@ const likeComment = async (req: Request, res: Response, next: NextFunction) => {
 
   else
     {
-      await Like.findOneAndDelete({ uid })
+      await Like.findOneAndDelete({ uid,postId })
     }
   
   const count: number = await Like.find({}).count()

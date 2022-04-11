@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express"
 import { IPost } from "../../interface/post"
 import { find_all_post } from '../main'
 
+import Like from '../../model/Like'
 import Post from "../../model/Post"
 
 const findAll = async (req: Request, res: Response, next:NextFunction ) => {
@@ -10,7 +11,7 @@ const findAll = async (req: Request, res: Response, next:NextFunction ) => {
   const _post = await Post.aggregate([
     {
       $project: {
-        _id: "$_id",
+        _id: "$_id", 
         firstName: "$firstName",
         lastName: "$lastName",
         body: "$body",
@@ -22,9 +23,9 @@ const findAll = async (req: Request, res: Response, next:NextFunction ) => {
     {
       $lookup: {
         from: 'likes',
-        localField: '_id', 
-        foreignField: 'postId',
-        as: 'likesFields'
+        localField: '62459cabf8570ec26c63f09c',
+        foreignField: '62459cabf8570ec26c63f09c',
+        as: 'countLike'
       }
     },
     {
@@ -36,11 +37,13 @@ const findAll = async (req: Request, res: Response, next:NextFunction ) => {
         avatar: 1,
         createdAt: 1,
         updatedAt: 1,
-        consts2: '$likesFields'
+        countLikes: { $size: { $ifNull: ['$countLike', []] } } 
       }
     },
 
-  ]) 
+  ])
+  
+
   console.log(_post)
   res.locals.post = post.reverse() 
   

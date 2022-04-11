@@ -32,8 +32,8 @@ export const find_post_by_id = async (_id: string) => {
   return post
 }
 
-export const find_like_by_uid = async (uid: string) => {
-  const user = await Like.findOne({ uid })
+export const find_like_by_uid = async (uid: string, postId: string) => {
+  const user = await Like.findOne({ uid, postId })
   if( !user )
     {
       return true 
