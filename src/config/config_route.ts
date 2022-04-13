@@ -3,6 +3,7 @@ import userRoute from '../route/user'
 import postRoute from '../route/post'
 import likeRoute from '../route/like'
 
+
 module.exports = ( app: any ) => {
   app.use('/api', userRoute)   
   app.use('/api', postRoute)

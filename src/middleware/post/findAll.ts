@@ -21,10 +21,13 @@ const findAll = async (req: Request, res: Response, next:NextFunction ) => {
       }
     },
     {
+      $addFields: { userId: '$_id'.toString()   }
+    },
+    {
       $lookup: {
         from: 'likes',
-        localField: '62459cabf8570ec26c63f09c',
-        foreignField: '62459cabf8570ec26c63f09c',
+        localField: 'userId',
+        foreignField: 'postId',
         as: 'countLike'
       }
     },
@@ -44,8 +47,7 @@ const findAll = async (req: Request, res: Response, next:NextFunction ) => {
   ])
   
 
-  console.log(_post)
-  res.locals.post = post.reverse() 
+  res.locals.post = _post.reverse() 
   
   next()
   return

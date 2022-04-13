@@ -2,6 +2,7 @@
 
 import Like from '../../model/Like'
 import Post from '../../model/Post'
+import mongoose from 'mongoose'
 
 import { Request,Response,NextFunction } from 'express'
 import { find_by_uid, find_post_by_id, find_like_by_uid } from '../main'
@@ -33,7 +34,7 @@ const likeComment = async (req: Request, res: Response, next: NextFunction) => {
     {
       const like = new Like({
         uid,
-        postId 
+        postId: new mongoose.Types.ObjectId(postId) 
       })
       await like.save() 
     }
