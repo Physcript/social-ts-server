@@ -1,7 +1,9 @@
+import mongoose from 'mongoose'
 import { DUser, _IUser } from '../interface/user'
 import User from '../model/User'
 import Post from '../model/Post'
 import Like from '../model/Like'
+import Comment from '../model/Comment'
 
 
 export const find_by_email = async(email: string) => {
@@ -28,8 +30,18 @@ export const find_post_by_uid = async (uid: string) => {
 }
 
 export const find_post_by_id = async (_id: string) => {
-  const post = await Post.findOne({ _id })
-  return post
+  if(mongoose.isValidObjectId(_id))
+     {
+       return await Post.findOne({ _id })
+     }
+  return false
+}
+export const find_comment_by_post_id = async (postId: string) => {
+  if(mongoose.isValidObjectId(postId))
+    {
+      return await Comment.find({ postId })
+    }
+    return []
 }
 
 export const find_like_by_uid = async (uid: string, postId: string) => {
