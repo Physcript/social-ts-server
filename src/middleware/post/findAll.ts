@@ -15,6 +15,7 @@ const findAll = async (req: Request, res: Response, next:NextFunction ) => {
         firstName: "$firstName",
         lastName: "$lastName",
         body: "$body",
+        userUid: "$userUid",
         avatar: "$avatar",
         createdAt: "$createdAt",
         updatedAt: "$updatedAt"
@@ -38,6 +39,7 @@ const findAll = async (req: Request, res: Response, next:NextFunction ) => {
         lastName: 1,
         body: 1,
         avatar: 1,
+        userUid: 1,
         createdAt: 1,
         updatedAt: 1,
         countLikes: { $size: { $ifNull: ['$countLike', []] } } 

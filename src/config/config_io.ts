@@ -11,6 +11,9 @@ module.exports = ( httpServer: any ) => {
       io.emit('refresh-post') 
     })
 
+    socket.on('like-notif', (data) => {
+      io.emit('like-notif', { data })
+    })
 
   })
 

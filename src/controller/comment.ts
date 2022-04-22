@@ -18,10 +18,12 @@ export default {
   getComment: ((req: Request, res: Response) => {
     res.status(200).json({
       message: {
-        comment: res.locals.comment
+        comment: res.locals.comment,
+        size: res.locals.size
       }
     })
     res.locals.comment = undefined
+    res.locals.size = undefined
     return
   })
 }

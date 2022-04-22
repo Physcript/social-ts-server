@@ -14,6 +14,7 @@ const likeComment = async (req: Request, res: Response, next: NextFunction) => {
   const post = await find_post_by_id(postId)
   
   const exist = await find_like_by_uid(uid,postId)
+  let addRemove: boolean = true
 
   if(user === null)
     {
@@ -42,12 +43,13 @@ const likeComment = async (req: Request, res: Response, next: NextFunction) => {
   else
     {
       await Like.findOneAndDelete({ uid,postId })
+      addRemove = false
     }
   
   const count: number = await Like.find({ postId }).count()
   
   res.locals.count = count
-
+  res.locals.data = addRemove
   next()
   return
 }
