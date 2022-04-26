@@ -4,6 +4,7 @@ import User from '../model/User'
 import Post from '../model/Post'
 import Like from '../model/Like'
 import Comment from '../model/Comment'
+import Follow from '../model/Follow'
 
 
 export const find_by_email = async(email: string) => {
@@ -36,6 +37,7 @@ export const find_post_by_id = async (_id: string) => {
      }
   return false
 }
+
 export const find_comment_by_post_id = async (postId: string) => {
   if(mongoose.isValidObjectId(postId))
     {
@@ -49,6 +51,16 @@ export const find_like_by_uid = async (uid: string, postId: string) => {
   if( !user )
     {
       return true 
+    }
+  return false
+}
+
+
+export const find_follow_by_uid = async ( userUid: string, followUid: string ) => {
+  const follow = await Follow.findOne({ userUid, followUid })
+  if(follow)
+    {
+      return true
     }
   return false
 }
