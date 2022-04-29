@@ -28,6 +28,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
 
   res.locals.user = _user
   next()
+  return
 }
 
 

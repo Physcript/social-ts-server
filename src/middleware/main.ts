@@ -64,3 +64,20 @@ export const find_follow_by_uid = async ( userUid: string, followUid: string ) =
     }
   return false
 }
+
+export const find_follow_by_followerUid = async( userUid: string ) => {
+  const follower = await Follow.find({followUid: userUid})
+  return follower
+}
+
+export const find_follow_by_both = async ( userUid: string, followUid: string) => {
+  const isExist = await Follow.findOne({ userUid, followUid })
+  if(isExist)
+    {
+      return true
+    }
+  return false
+}
+
+
+

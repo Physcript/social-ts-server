@@ -8,5 +8,25 @@ export default {
       message: 'follow'
     })
     return
+  }),
+  get: ((req: Request, res: Response) => {
+    
+    res.status(200).json({
+      message: {
+        follower: res.locals.follow,
+        count: res.locals.count
+      }
+    })
+    res.locals.follow = undefined
+    res.locals.count = undefined
+    return
+  }),
+  check: ((req: Request, res: Response) => {
+    res.status(200).json({
+      message: res.locals.isExist
+    })
+  
+    res.locals.isExist = undefined
+    return
   })
 }

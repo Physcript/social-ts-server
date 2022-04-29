@@ -4,9 +4,9 @@ import { find_by_uid } from "../main";
 import { find_follow_by_uid } from "../main";
 
 const create = async (req: Request,res: Response, next: NextFunction) => {
-  
-  const { userUid,followUid } = req.body 
-  const meUser = await find_by_uid(userUid)
+  const { followUid } = req.body
+  const meUser = res.locals.user
+  const userUid  = meUser.uid ?? null
   const toFollowUser = await find_by_uid(followUid)
   
   if(meUser === null || toFollowUser === null)
@@ -32,7 +32,7 @@ const create = async (req: Request,res: Response, next: NextFunction) => {
     {
       follow.save() 
     }
-
+  
   next()
   return
 }

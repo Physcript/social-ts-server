@@ -38,10 +38,12 @@ export default {
   search: ((req: Request, res: Response) => {
     res.status(200).json({
       message: {
-        user: res.locals.user 
+        user: res.locals.user,
+        count: res.locals.count
       }
     })
     res.locals.user = undefined
+    res.locals.count = undefined
     return
   })
 }
