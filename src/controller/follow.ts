@@ -5,8 +5,12 @@ import { Request,Response } from "express";
 export default {
   create: ((req: Request, res: Response) => {
     res.status(200).json({
-      message: 'follow'
+      message: res.locals.exist,
+      count: res.locals.count
     })
+    res.locals.exist = undefined
+    res.locals.count = undefined
+
     return
   }),
   get: ((req: Request, res: Response) => {

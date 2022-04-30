@@ -8,7 +8,8 @@ const create = async (req: Request,res: Response, next: NextFunction) => {
   const meUser = res.locals.user
   const userUid  = meUser.uid ?? null
   const toFollowUser = await find_by_uid(followUid)
-  
+ 
+
   if(meUser === null || toFollowUser === null)
     {
       res.status(400).json({
@@ -21,6 +22,7 @@ const create = async (req: Request,res: Response, next: NextFunction) => {
     userUid,
     followUid
   })
+  
 
   const exist = await find_follow_by_uid(userUid,followUid)
   console.log(exist)
@@ -30,9 +32,13 @@ const create = async (req: Request,res: Response, next: NextFunction) => {
     }
   else
     {
-      follow.save() 
+     await follow.save() 
     }
-  
+
+  const followCount = await Follow.find({ followUid }).count()
+  res.locals.exist = exist  
+  res.locals.count = followCount
+
   next()
   return
 }
